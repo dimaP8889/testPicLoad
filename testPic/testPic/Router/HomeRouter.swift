@@ -10,8 +10,9 @@ import UIKit
 
 class HomeRouter {
     
-      // MARK: - Instance Properties
-    public let window: UIWindow
+    // MARK: - Instance Properties
+    let window: UIWindow
+    let navigationController = UINavigationController()
     
     init(window : UIWindow) {
         self.window = window
@@ -22,7 +23,8 @@ extension HomeRouter : Router {
     
     func present(_ viewController: UIViewController) {
         
-        window.rootViewController = viewController
+        navigationController.setViewControllers([viewController], animated: true)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 }

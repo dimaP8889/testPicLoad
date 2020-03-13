@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C3F0CA6241BD96300F7FFDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C3F0CA5241BD96300F7FFDE /* Assets.xcassets */; };
 		2C3F0CA9241BD96300F7FFDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C3F0CA7241BD96300F7FFDE /* LaunchScreen.storyboard */; };
-		2C3F0CB3241BDB9600F7FFDE /* HomeCoordanator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F0CB2241BDB9600F7FFDE /* HomeCoordanator.swift */; };
+		2C3F0CB3241BDB9600F7FFDE /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F0CB2241BDB9600F7FFDE /* HomeCoordinator.swift */; };
 		2C3F0CB5241BDBC800F7FFDE /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F0CB4241BDBC800F7FFDE /* HomeRouter.swift */; };
 		2C3F0CB7241BDC2800F7FFDE /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F0CB6241BDC2800F7FFDE /* Router.swift */; };
 		2C3F0CBA241BDF8800F7FFDE /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F0CA0241BD95E00F7FFDE /* SearchVC.swift */; };
@@ -23,7 +23,7 @@
 		2C3F0CA5241BD96300F7FFDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3F0CA8241BD96300F7FFDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C3F0CAA241BD96300F7FFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C3F0CB2241BDB9600F7FFDE /* HomeCoordanator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordanator.swift; sourceTree = "<group>"; };
+		2C3F0CB2241BDB9600F7FFDE /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		2C3F0CB4241BDBC800F7FFDE /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		2C3F0CB6241BDC2800F7FFDE /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +72,7 @@
 		2C3F0CB0241BDB7F00F7FFDE /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				2C3F0CB2241BDB9600F7FFDE /* HomeCoordanator.swift */,
+				2C3F0CB2241BDB9600F7FFDE /* HomeCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 				2C3F0CBA241BDF8800F7FFDE /* SearchVC.swift in Sources */,
 				2C3F0CB7241BDC2800F7FFDE /* Router.swift in Sources */,
 				2C3F0CBB241BDFD400F7FFDE /* AppDelegate.swift in Sources */,
-				2C3F0CB3241BDB9600F7FFDE /* HomeCoordanator.swift in Sources */,
+				2C3F0CB3241BDB9600F7FFDE /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
