@@ -82,7 +82,25 @@ extension SearchVC {
 
 extension SearchVC {
     
-    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        
+        if (editingStyle == .delete) {
+            
+            var newModel = model
+            
+            let deleted = newModel.remove(at: indexPath.row)
+            
+            caretaker.delete(deleted)
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 }
 
 extension SearchVC {

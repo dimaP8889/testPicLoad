@@ -37,8 +37,8 @@ class SearchTableViewCell : UITableViewCell {
         
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
-        let topAnchorConstrait = mainView.topAnchor.constraint(equalTo: marginGuide.topAnchor)
-        let bottomAnchorConstrait = mainView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: 10)
+        let topAnchorConstrait = mainView.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: -5)
+        let bottomAnchorConstrait = mainView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: 5)
         let leftAnchorConstrait = mainView.leftAnchor.constraint(equalTo: marginGuide.leftAnchor)
         let rightAnchorConstrait = mainView.rightAnchor.constraint(equalTo: marginGuide.rightAnchor)
         

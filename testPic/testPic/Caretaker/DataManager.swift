@@ -20,6 +20,14 @@ class DataManager {
         }
     }
     
+    func delete(_ element: SearchModel) {
+        
+        let object = load().filter { $0 == element }
+        try! realm.write {
+            realm.delete(object)
+        }
+    }
+    
     func load() -> [SearchModel] {
         
         let objects = try! Realm().objects(SearchModel.self)
