@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SearchVC: UITableViewController {
     
@@ -98,7 +99,9 @@ extension SearchVC {
 extension SearchVC : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -107,16 +110,22 @@ extension SearchVC : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        SVProgressHUD.show()
+        
         guard let imageName = searchBar.text else { return }
         guard !imageName.isEmpty else { return }
         
-        guard let image = Networking.pixbayAPI?.getImage(imageName) else { return }
-        guard let png = image.pngData() else { return }
-        
-        let data = SearchModel(name: imageName, picture: png, creation: Date())
-        
-        caretaker.save(model + [data])
-        
-        tableView.reloadData()
+        DispatchQueue.global().async {
+            
+            guard let image = Networking.pixbayAPI?.getImage(imageName) else { return }
+            guard let png = image.pngData() else { return }
+            
+            let data = SearchModel(name: imageName, picture: png, creation: Date())
+            
+            DispatchQueue.main.async {
+                self.caretaker.save(self.model + [data])
+                self.tableView.reloadData()
+            }
+        }
     }
 }

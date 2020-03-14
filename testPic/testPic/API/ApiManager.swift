@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class Networking {
     
@@ -156,6 +157,10 @@ class API<RQ: Requestable>: NSObject {
 extension API where RQ == PixbayPresence {
     
     func getImage(_ name: String) -> UIImage? {
+        
+        defer {
+            SVProgressHUD.dismiss()
+        }
         
         guard let dataUrl = sync(request: .picture(name: name)) else { return nil }
         let downloader = ImageDownloader(urlString: dataUrl)

@@ -6,6 +6,7 @@ target 'testPic' do
   use_frameworks!
 
   pod "RealmSwift"
+  pod "SVProgressHUD"
   # Pods for testPic
 
 end
