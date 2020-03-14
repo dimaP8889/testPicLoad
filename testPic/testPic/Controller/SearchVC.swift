@@ -30,7 +30,7 @@ class SearchVC: UITableViewController {
     var model : [SearchModel] {
         
         let data = caretaker.load().sorted { $0.creationDate > $1.creationDate }
-        return filterWord.isEmpty ? data : data.filter { $0.name.contains(filterWord) }
+        return filterWord.isEmpty ? data : data.filter { $0.name.lowercased().contains(filterWord.lowercased()) }
     }
     
     var filterWord : String {
@@ -47,12 +47,14 @@ class SearchVC: UITableViewController {
         navigationItem.searchController = resultSearchController
         
         tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchCell")
         
         setNavBar()
     }
     
+    // MARK: - View Handloigs
     func setNavBar() {
         
         self.title = "Picture Searcher"
@@ -67,14 +69,27 @@ extension SearchVC {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell") else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell")
+            as? SearchTableViewCell else { return UITableViewCell() }
         
         let data = model[indexPath.row]
         
-        cell.textLabel?.text = data.name
-        cell.imageView?.image = UIImage(data: data.picture)
-        cell.selectionStyle = .none
+        cell.handleData(data: data)
         return cell
+    }
+    
+}
+
+extension SearchVC {
+    
+    
+}
+
+extension SearchVC {
+    
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,14 +99,6 @@ extension SearchVC {
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return model.count
-    }
-}
-
-extension SearchVC {
-    
-    override func tableView(_ tableView: UITableView,
-                            heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
     }
 }
 

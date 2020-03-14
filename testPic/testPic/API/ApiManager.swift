@@ -189,7 +189,7 @@ extension API {
         
         switch result {
         case .success(let imageData):
-            guard let imageName = imageData.imagesData.first?.largeImageURL else {
+            guard let imageName = imageData.imagesData.first?.previewURL else {
                 presentAlert(with: "No image found")
                 return nil
             }
