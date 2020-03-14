@@ -27,8 +27,15 @@ class SearchVC: UITableViewController {
     let caretaker = DataManager()
     
     var model : [SearchModel] {
-        return caretaker.load()
+        
+        let data = caretaker.load().sorted { $0.creationDate > $1.creationDate }
+        return filterWord.isEmpty ? data : data.filter { $0.name.contains(filterWord) }
     }
+    
+    var filterWord : String {
+        return resultSearchController.searchBar.text ?? ""
+    }
+    
 
     // MARK: - View Lyfecycle
     override func viewDidLoad() {
@@ -41,6 +48,15 @@ class SearchVC: UITableViewController {
         tableView.tableFooterView = UIView()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        
+        setNavBar()
+    }
+    
+    func setNavBar() {
+        
+        self.title = "Picture Searcher"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
     }
 }
 
@@ -82,7 +98,7 @@ extension SearchVC {
 extension SearchVC : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+        tableView.reloadData()
     }
 }
 
@@ -94,11 +110,7 @@ extension SearchVC : UISearchBarDelegate {
         guard let imageName = searchBar.text else { return }
         guard !imageName.isEmpty else { return }
         
-        guard let image = Networking.pixbayAPI?.getImage(imageName) else {
-            
-            return
-        }
-        
+        guard let image = Networking.pixbayAPI?.getImage(imageName) else { return }
         guard let png = image.pngData() else { return }
         
         let data = SearchModel(name: imageName, picture: png, creation: Date())
