@@ -33,6 +33,9 @@ class SearchVC: UITableViewController {
         tableView.tableFooterView = UIView()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        
+        let test = Networking.pixbayAPI?.getImage("apple fruit")
+        
     }
 }
 
