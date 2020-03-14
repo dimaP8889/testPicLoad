@@ -184,7 +184,11 @@ extension API {
         
         switch result {
         case .success(let imageData):
-            return imageData.imagesData.first?.largeImageURL
+            guard let imageName = imageData.imagesData.first?.largeImageURL else {
+                presentAlert(with: "No image found")
+                return nil
+            }
+            return imageName
         case .failure(let error):
             presentAlert(with: error.localizedDescription)
             return nil

@@ -19,8 +19,16 @@ class SearchVC: UITableViewController {
         
         controller.searchBar.sizeToFit()
         
+        controller.searchBar.delegate = self
+        
         return controller
     }()
+    
+    let caretaker = DataManager()
+    
+    var model : [SearchModel] {
+        return caretaker.load()
+    }
 
     // MARK: - View Lyfecycle
     override func viewDidLoad() {
@@ -33,9 +41,6 @@ class SearchVC: UITableViewController {
         tableView.tableFooterView = UIView()
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
-        
-        let test = Networking.pixbayAPI?.getImage("apple fruit")
-        
     }
 }
 
@@ -47,8 +52,10 @@ extension SearchVC {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell") else { return UITableViewCell() }
         
-        cell.textLabel?.text = "Label"
-        cell.imageView?.image = #imageLiteral(resourceName: "faceMasculine")
+        let data = model[indexPath.row]
+        
+        cell.textLabel?.text = data.name
+        cell.imageView?.image = UIImage(data: data.picture)
         cell.selectionStyle = .none
         return cell
     }
@@ -59,7 +66,7 @@ extension SearchVC {
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return model.count
     }
 }
 
@@ -76,5 +83,28 @@ extension SearchVC : UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
+    }
+}
+
+// MARK: - Search Result
+extension SearchVC : UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        guard let imageName = searchBar.text else { return }
+        guard !imageName.isEmpty else { return }
+        
+        guard let image = Networking.pixbayAPI?.getImage(imageName) else {
+            
+            return
+        }
+        
+        guard let png = image.pngData() else { return }
+        
+        let data = SearchModel(name: imageName, picture: png, creation: Date())
+        
+        caretaker.save(model + [data])
+        
+        tableView.reloadData()
     }
 }
