@@ -65,7 +65,7 @@ class MainCellView : UIView {
         let topAnchorConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
         let leftAnchorConstraint = imageView.leftAnchor.constraint(equalTo: leftAnchor)
         let bottomAnchorConstraint = imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        let widthConstraint = imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 1.2)
+        let widthConstraint = imageView.widthAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 1.2)
         
         NSLayoutConstraint.activate([topAnchorConstraint, leftAnchorConstraint, bottomAnchorConstraint, widthConstraint])
     }

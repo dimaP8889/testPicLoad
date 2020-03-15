@@ -31,16 +31,16 @@ class SearchTableViewCell : UITableViewCell {
     
     private func addMainViewConstraits() {
         
-        let marginGuide = contentView.layoutMarginsGuide
-        
-        addSubview(mainView)
+        contentView.addSubview(mainView)
         
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
-        let topAnchorConstrait = mainView.topAnchor.constraint(equalTo: marginGuide.topAnchor, constant: -5)
-        let bottomAnchorConstrait = mainView.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor, constant: 5)
-        let leftAnchorConstrait = mainView.leftAnchor.constraint(equalTo: marginGuide.leftAnchor)
-        let rightAnchorConstrait = mainView.rightAnchor.constraint(equalTo: marginGuide.rightAnchor)
+        let topAnchorConstrait = mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
+        let bottomAnchorConstrait = mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+        let leftAnchorConstrait = mainView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+        let rightAnchorConstrait = mainView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+        
+        bottomAnchorConstrait.priority = UILayoutPriority(999.0)
         
         NSLayoutConstraint.activate([topAnchorConstrait, bottomAnchorConstrait, leftAnchorConstrait, rightAnchorConstrait])
     }
