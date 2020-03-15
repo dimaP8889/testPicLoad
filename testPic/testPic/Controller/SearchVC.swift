@@ -18,8 +18,8 @@ class SearchVC: UITableViewController {
         controller.searchResultsUpdater = self
         controller.dimsBackgroundDuringPresentation = false
         
+        controller.searchBar.returnKeyType = .done
         controller.searchBar.sizeToFit()
-        
         controller.searchBar.delegate = self
         
         return controller
