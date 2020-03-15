@@ -22,6 +22,7 @@ class MainCellView : UIView {
         
         let label = UILabel()
         label.font = UIFont(name: "TimesNewRoman", size: 17)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -76,8 +77,9 @@ class MainCellView : UIView {
         let topAnchorConstraint = textLabel.topAnchor.constraint(equalTo: topAnchor)
         let bottomAnchorConstraint = textLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         let leftAnchorConstraint = textLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 32)
+        let rightAnchorConstraint = textLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -32)
         
-        NSLayoutConstraint.activate([topAnchorConstraint, leftAnchorConstraint, bottomAnchorConstraint])
+        NSLayoutConstraint.activate([topAnchorConstraint, leftAnchorConstraint, bottomAnchorConstraint, rightAnchorConstraint])
     }
     
 }
