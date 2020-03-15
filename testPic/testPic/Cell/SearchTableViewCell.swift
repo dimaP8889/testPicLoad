@@ -11,8 +11,10 @@ import UIKit
 
 class SearchTableViewCell : UITableViewCell {
     
+    // MARK: - Instance Properties
     lazy var mainView = MainCellView()
     
+    // MARK: - View Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,11 +26,13 @@ class SearchTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func handleData(data : SearchModel) {
         
         mainView.handleData(data: data)
     }
     
+    // MARK: - Handle Constraits
     private func addMainViewConstraits() {
         
         contentView.addSubview(mainView)

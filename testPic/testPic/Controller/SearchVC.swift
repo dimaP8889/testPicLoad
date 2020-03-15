@@ -64,6 +64,8 @@ class SearchVC: UITableViewController {
 }
 
 // MARK: - Extensions
+
+// MARK: - Cell Handler
 extension SearchVC {
     
     override func tableView(_ tableView: UITableView,
@@ -80,6 +82,7 @@ extension SearchVC {
     
 }
 
+// MARK: - Cell Editor
 extension SearchVC {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,6 +106,7 @@ extension SearchVC {
     }
 }
 
+// MARK: - Cell Size Handler
 extension SearchVC {
     
     override func tableView(_ tableView: UITableView,

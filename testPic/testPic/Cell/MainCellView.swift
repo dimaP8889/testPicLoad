@@ -11,6 +11,7 @@ import UIKit
 
 class MainCellView : UIView {
     
+    // MARK: - Instance Properties
     var imageView : UIImageView = {
         
         let imageView = UIImageView()
@@ -26,6 +27,7 @@ class MainCellView : UIView {
         return label
     }()
     
+    // MARK: - View Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,13 +44,14 @@ class MainCellView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Methods
     func handleData(data : SearchModel) {
         
         textLabel.text = data.name
         imageView.image = UIImage(data: data.picture)
     }
     
-    
+    // MARK: - Handle Constraits
     private func addConstraints() {
         
         addSubview(imageView)

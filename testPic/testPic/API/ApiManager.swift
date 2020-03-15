@@ -9,12 +9,13 @@
 import UIKit
 import SVProgressHUD
 
+// MARK: - Network Class
 class Networking {
     
     static let pixbayAPI = API<PixbayPresence>(base: "https://pixabay.com")
 }
 
-
+// MARK: - Pixbay Properties
 enum PixbayPresence {
     
     case picture(name : String)
@@ -42,6 +43,8 @@ extension PixbayPresence : Requestable {
     }
 }
 
+// MARK: - API Extra
+
 enum APIResult {
 
     case success(ImagesResponse)
@@ -58,6 +61,7 @@ enum APIError: Error {
     case jsonMappingFailed(Error)
 }
 
+// MARK: - API
 class API<RQ: Requestable>: NSObject {
     
     private var base: URL
@@ -74,6 +78,7 @@ class API<RQ: Requestable>: NSObject {
         self.base = _base
     }
     
+    // MARK: - Request Handle
     func dataTask(request: RQ, completion: @escaping (APIResult) -> ()) -> URLSessionDataTask {
         
         var urlRequest = request.urlRequest(base)
@@ -102,6 +107,7 @@ class API<RQ: Requestable>: NSObject {
         return task
     }
     
+    // MARK: - Response Handle
     private func isResponseOk(
                 _ data: Data?,
                 _ response: URLResponse?,
@@ -154,6 +160,9 @@ class API<RQ: Requestable>: NSObject {
     }
 }
 
+// MARK: - Extensions
+
+// MARK: - Data Provider
 extension API where RQ == PixbayPresence {
     
     func getImage(_ name: String) -> UIImage? {
@@ -169,6 +178,7 @@ extension API where RQ == PixbayPresence {
     }
 }
 
+// MARK: - Data Handler
 extension API {
     
     func sync(request : RQ) -> String? {
@@ -203,4 +213,5 @@ extension API {
     }
 }
 
+// MARK: - Error Alert
 extension API : ErrorAlert {}

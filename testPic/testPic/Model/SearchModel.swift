@@ -25,8 +25,7 @@ class SearchModel: Object {
         self.creationDate = creation
     }
     
-    required init() {
-    }
+    required init() {}
 }
 
 
